@@ -2,7 +2,7 @@ package com.cantito.CantitoBackend.service.impl;
 
 import com.cantito.CantitoBackend.exceptions.ResourceNotFoundException;
 import com.cantito.CantitoBackend.entities.User;
-import com.cantito.CantitoBackend.exceptions.UserAlreadyExistsException;
+import com.cantito.CantitoBackend.exceptions.ResourceAlreadyExistsException;
 import com.cantito.CantitoBackend.repository.UserRepository;
 import com.cantito.CantitoBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         if(userRepository.existsByUsername(user.getUsername()))
-            throw new UserAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
+            throw new ResourceAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
         user.setCreatedAt(LocalDate.now());
         return userRepository.save(user);
     }

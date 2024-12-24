@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    public APIResponse handleUserAlreadyExists(UserAlreadyExistsException exception){
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public APIResponse handleUserAlreadyExists(ResourceAlreadyExistsException exception){
         APIResponse response = new APIResponse();
         response.setMessage(exception.getMessage());
         response.setStatus(HttpStatus.CONFLICT);
