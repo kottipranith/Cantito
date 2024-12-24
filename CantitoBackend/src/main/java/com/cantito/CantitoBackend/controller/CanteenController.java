@@ -1,6 +1,10 @@
 package com.cantito.CantitoBackend.controller;
 
-import com.cantito.CantitoBackend.entities.Item;
+import com.cantito.CantitoBackend.entities.Canteen;
+import com.cantito.CantitoBackend.service.CanteenService;
+import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,39 +14,26 @@ import java.util.List;
 @RequestMapping("/canteens")
 public class CanteenController {
 
-    @PostMapping("/additem")
-    public ResponseEntity<Item> addItem(@RequestBody Item item){
+    @Autowired
+    private CanteenService canteenService;
 
+    @PostMapping("/")
+    public ResponseEntity<Canteen> save(@RequestBody Canteen canteen){
+        return new ResponseEntity<>(canteenService.save(canteen), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{canteenId}/items/{itemId}")
-    public List<Item> getMenu(@PathVariable("canteenId") int canteenId, @PathVariable("itemId")int itemId){
-
+    @GetMapping("/")
+    public ResponseEntity<List<Canteen>> findAll(){
+        return ResponseEntity.ok(canteenService.findAll());
     }
 
-    @GetMapping("/menu/{canteenId}")
-    public List<Item> getMenu(@PathVariable("canteenId") int canteenId){
-
+    @GetMapping("/{canteenId}")
+    public ResponseEntity<Canteen> findById(@PathVariable("canteenId")int canteenId){
+        return new ResponseEntity<>(canteenService.findById(canteenId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{canteenId}/items/{itemId}")
-    public ResponseEntity<String> deleteItem(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId){
-
+    @DeleteMapping("/{canteenId}")
+    public ResponseEntity<String> deleteById(@PathVariable("canteenId")int canteenId){
+        return new ResponseEntity<>(canteenService.delete(canteenId), HttpStatus.OK);
     }
-
-    @PutMapping("/{canteenId}/items/{itemId}")
-    public ResponseEntity<String> makeItemsAvailable(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId){
-
-    }
-
-    @PutMapping("/{canteenId}/items/{itemId}")
-    public ResponseEntity<String> makeItemsUnavailable(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId){
-
-    }
-
-    @PutMapping("/{canteenId}/items/{itemId}/{price}")
-    public ResponseEntity<String> makeItemsUnavailable(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId, @PathVariable("price")double price){
-
-    }
-
 }
