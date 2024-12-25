@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         if(userRepository.existsByUsername(user.getUsername()))
             throw new ResourceAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
+        user.setProfileUrl("default.jpg");
         user.setCreatedAt(LocalDate.now());
         return userRepository.save(user);
     }

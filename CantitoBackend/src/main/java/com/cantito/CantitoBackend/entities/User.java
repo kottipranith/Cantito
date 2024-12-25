@@ -29,6 +29,8 @@ public class User {
 
     private String role;
 
+    private String profileUrl;
+
     public String getUsername() {
         return username;
     }
@@ -83,5 +85,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
     }
 }

@@ -18,6 +18,8 @@ public class Item {
     @ManyToOne
     private Canteen canteen;
 
+    private String itemUrl; // to store item image location
+
     public int getItemId() {
         return itemId;
     }
@@ -56,6 +58,14 @@ public class Item {
 
     public void setCanteen(Canteen canteen) {
         this.canteen = canteen;
+    }
+
+    public String getItemUrl() {
+        return itemUrl;
+    }
+
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
     }
 
     @Override

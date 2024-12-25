@@ -21,6 +21,8 @@ public class Canteen {
     @OneToMany(mappedBy = "canteen")
     private List<Item> items = new ArrayList<>();
 
+    private String canteenUrl; // to store canteen image location and file name
+
     public int getCanteenId() {
         return canteenId;
     }
@@ -59,5 +61,13 @@ public class Canteen {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public String getCanteenUrl() {
+        return canteenUrl;
+    }
+
+    public void setCanteenUrl(String canteenUrl) {
+        this.canteenUrl = canteenUrl;
     }
 }
