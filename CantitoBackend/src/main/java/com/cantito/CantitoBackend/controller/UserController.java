@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -39,5 +40,10 @@ public class UserController {
     @DeleteMapping("/delete/{username}")
     public ResponseEntity<String> delete(@PathVariable("username") String username){
         return new ResponseEntity<>(userService.delete(username), HttpStatus.OK);
+    }
+
+    @PostMapping("/{username}/addphoto")
+    public ResponseEntity<String> updatePhoto(@PathVariable("username") String username, @RequestParam("image")MultipartFile image){
+        return ResponseEntity.ok(userService.updatePhoto(username, image));
     }
 }

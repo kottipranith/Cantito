@@ -36,12 +36,12 @@ public class MenuController {
         return new ResponseEntity<>(itemService.delete(canteenId, itemId), HttpStatus.OK);
     }
 
-    @PutMapping("/{canteenId}/items/{itemId}")
+    @PutMapping("/{canteenId}/items/{itemId}/makeavailable")
     public ResponseEntity<String> makeItemsAvailable(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId){
         return new ResponseEntity<>(itemService.makeItemAvailable(canteenId, itemId), HttpStatus.OK);
     }
 
-    @PutMapping("/{canteenId}/items/{itemId}")
+    @PutMapping("/{canteenId}/items/{itemId}/makeunavailable")
     public ResponseEntity<String> makeItemsUnavailable(@PathVariable("canteenId") int canteenId, @PathVariable("itemId") int itemId){
         return new ResponseEntity<>(itemService.makeItemUnavailable(canteenId, itemId), HttpStatus.OK);
     }
